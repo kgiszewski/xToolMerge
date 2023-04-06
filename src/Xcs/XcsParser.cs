@@ -1,16 +1,17 @@
-﻿namespace xToolMerge.Xcs;
+﻿using System.Text.Json;
+
+namespace xToolMerge.Xcs;
 
 public interface IXcsParser
 {
-    void LoadFile(string filepath);
+    Task LoadFileAsync(string filepath);
 }
 
 public class XcsParser : IXcsParser
 {
-    public void LoadFile(string filepath)
+    public async Task LoadFileAsync(string filepath)
     {
-        var fileContents = File.ReadLines(filepath);
-        
-        
+        var fileContents = await File.ReadAllTextAsync(filepath);
+        var xcsModel = JsonSerializer.Deserialize<XcsModel>(fileContents);
     }
 }

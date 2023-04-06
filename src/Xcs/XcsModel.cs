@@ -5,5 +5,8 @@ namespace xToolMerge.Xcs;
 public class XcsModel
 {
     [JsonPropertyName("canvasId")]
-    public string CanvasId { get; set; }
+    public Guid CanvasId { get; set; }
+    
+    [JsonPropertyName("canvas")]
+    public IEnumerable<CanvasModel> Canvas { get; set; }
 }

@@ -1,17 +1,36 @@
 ﻿using System.Text.Json;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using xToolMerge.Xcs;
 
 public class Program
 {
-    static void Main(string[] args)
+    static async Task Main(string[] args)
     {
+        var host = CreateHostBuilder(args).Build();
+
         Console.WriteLine(JsonSerializer.Serialize(args));
 
         var context = ParseCommandLine(args);
         
         Console.WriteLine(JsonSerializer.Serialize(context));
 
+        var parser = host.Services.GetRequiredService<IXcsParser>();
+        
+        await parser.LoadFileAsync(context.SourceFilePath1);
+        
+        //TODO: validate context
+
         Console.ReadKey();
     }
+    
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+        Host.CreateDefaultBuilder(args)
+
+        .ConfigureServices((_, services) =>
+            {
+                services.AddSingleton<IXcsParser, XcsParser>();
+            });
     
     private static CommandContext ParseCommandLine(string[] args)
     {
