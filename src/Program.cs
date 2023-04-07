@@ -86,7 +86,7 @@ public class Program
                     i++;
                     context.SourceFilePath2 = args[i];
                     break;
-                case "--OutputFilename":
+                case "--outputFilename":
                     i++;
                     context.OutputFilename = args[i];
                     break;
