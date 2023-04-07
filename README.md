@@ -48,3 +48,8 @@ If the `Process` button fails to work, go thru each layer and ensure the the mat
 
 ## License
 MIT License
+
+## Contributing
+Are you a coder? Send a PR.
+
+Are you just wanting bugs fixed and want to appreciate the contributors? We'd love it if you'd buy a support token (or as many as you'd like): https://www.etsy.com/listing/1442399906/xtoolmerge-support-token
