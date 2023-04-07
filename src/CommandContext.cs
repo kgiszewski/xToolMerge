@@ -1,12 +1,19 @@
 ﻿namespace xToolMerge;
 
-public class CommandContext
+public interface ICommandContext
+{
+    string SourceFilePath1 { get; }
+    string SourceFilePath2 { get;  }
+    string OutputFilename { get; }
+}
+
+internal class CommandContext : ICommandContext
 {
     public string SourceFilePath1 { get; private set; }
     public string SourceFilePath2 { get; private set; }
     public string OutputFilename { get; private set; }
     
-    public static CommandContext ParseCommandLine(string[] args)
+    public static ICommandContext ParseCommandLine(string[] args)
     {
         var context = new CommandContext();
         

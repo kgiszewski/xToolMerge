@@ -5,10 +5,10 @@ namespace xToolMerge;
 
 public interface IOrchestrator
 {
-    Task<XcsModel> ExecuteAsync(CommandContext context);
+    Task<XcsModel> ExecuteAsync(ICommandContext context);
 }
 
-public class Orchestrator : IOrchestrator
+internal class Orchestrator : IOrchestrator
 {
     private readonly IXcsReader _xcsReader;
     private readonly IXcsMergeService _xcsMergeService;
@@ -25,7 +25,7 @@ public class Orchestrator : IOrchestrator
         _xcsWriter = xcsWriter;
     }
     
-    public async Task<XcsModel> ExecuteAsync(CommandContext context)
+    public async Task<XcsModel> ExecuteAsync(ICommandContext context)
     {
         var xcsFile1 = await _xcsReader.LoadFileAsync(context.SourceFilePath1);
         
