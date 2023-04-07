@@ -20,9 +20,7 @@ public class Program
 
         var xcsModel = await orchestrator.ExecuteAsync(context);
 
-        Console.WriteLine(xcsModel.Canvas.First().Displays.Count());
-        
-        Console.ReadKey();
+        Console.WriteLine($"Complete => {xcsModel.Canvas.First().Displays.Count()} models in output file {context.OutputFilename}");
     }
     
     private static IHostBuilder CreateHostBuilder(string[] args) =>
