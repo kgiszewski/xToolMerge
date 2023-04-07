@@ -28,6 +28,19 @@ public class XcsMergeService : IXcsMergeService
         newDeviceDisplays.AddRange(dataTypeValueDisplaysValueModelsToAdd);
 
         model1.Device.Data.Values.First().Displays.Values = newDeviceDisplays;
+
+        //make groups unique
+        foreach (var displayModelGroup in displayModelsToAdd.GroupBy(x => x.GroupTag))
+        {
+            if (string.IsNullOrEmpty(displayModelGroup.FirstOrDefault()?.GroupTag)) continue;
+
+            var newGroupTag = $"g-{Guid.NewGuid()}";
+            
+            foreach(var displayModel in displayModelGroup)
+            {
+                displayModel.GroupTag = newGroupTag;
+            }
+        }
         
         return Task.CompletedTask;
     }

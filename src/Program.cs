@@ -27,8 +27,7 @@ public class Program
     
     private static IHostBuilder CreateHostBuilder(string[] args) =>
         Host.CreateDefaultBuilder(args)
-
-        .ConfigureServices((_, services) =>
+            .ConfigureServices((_, services) =>
             {
                 services.AddSingleton<IXcsReader, XcsReader>();
                 services.AddSingleton<IOrchestrator, Orchestrator>();

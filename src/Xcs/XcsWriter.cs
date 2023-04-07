@@ -1,4 +1,5 @@
-﻿using xToolMerge.Xcs.Models;
+﻿using System.Text.Json;
+using xToolMerge.Xcs.Models;
 
 namespace xToolMerge.Xcs;
 
@@ -9,8 +10,10 @@ public interface IXcsWriter
 
 public class XcsWriter : IXcsWriter
 {
-    public Task WriteAsync(XcsModel model, string outputFilePath)
+    public async Task WriteAsync(XcsModel model, string outputFilePath)
     {
-        throw new NotImplementedException();
+        var result = JsonSerializer.Serialize(model);
+        
+        await File.WriteAllTextAsync(outputFilePath, result);
     }
 }

@@ -28,9 +28,6 @@ internal class Orchestrator : IOrchestrator
     public async Task<XcsModel> ExecuteAsync(ICommandContext context)
     {
         var xcsFile1 = await _xcsReader.LoadFileAsync(context.SourceFilePath1);
-        
-        GetElementsFromFile(xcsFile1, context.SourceFilePath1);
-        
         var xcsFile2 = await _xcsReader.LoadFileAsync(context.SourceFilePath2);
         var (file2Elements, file2DeviceElements) = GetElementsFromFile(xcsFile2, context.SourceFilePath2);
         
