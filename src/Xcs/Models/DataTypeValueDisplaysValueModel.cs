@@ -1,7 +1,7 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace xToolMerge.Xcs;
+namespace xToolMerge.Xcs.Models;
 
 public class DataTypeValueDisplaysValueModel
 {

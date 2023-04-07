@@ -1,4 +1,6 @@
-﻿namespace xToolMerge.Xcs;
+﻿using xToolMerge.Xcs.Models;
+
+namespace xToolMerge.Xcs;
 
 public interface IXcsMergeService
 {

@@ -1,9 +1,9 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace xToolMerge.Xcs;
+namespace xToolMerge.Xcs.Models;
 
-public class DeviceDataModel
+public class DataDisplaysModel
 {
     [JsonPropertyName("dataType")]
     public string DataType { get; set; }
@@ -12,5 +12,5 @@ public class DeviceDataModel
     public IEnumerable<JsonElement> Value { get; set; }
     
     [JsonIgnore]
-    public IEnumerable<DataTypeValueModel> Values { get; set; }
+    public IEnumerable<DataTypeValueDisplaysValueModel> Values { get; set; }
 }

@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using xToolMerge.Xcs;
+using xToolMerge.Xcs.Models;
 
 public class Program
 {
