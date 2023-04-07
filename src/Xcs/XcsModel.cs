@@ -9,4 +9,7 @@ public class XcsModel
     
     [JsonPropertyName("canvas")]
     public IEnumerable<CanvasModel> Canvas { get; set; }
+    
+    [JsonPropertyName("device")]
+    public DeviceModel Device { get; set; }
 }
