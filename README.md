@@ -23,6 +23,7 @@ To merge:
 All arguments are required.
 
 Upon sucess you'll have a new file ready to open:
+
 ![image](https://user-images.githubusercontent.com/4653907/230638866-42529f99-eacb-435f-bc53-916cf56869b7.png)
 ![image](https://user-images.githubusercontent.com/4653907/230639284-4a44d3f2-ada0-475b-9a31-0a08b83fce01.png)
 ![image](https://user-images.githubusercontent.com/4653907/230638934-d8828244-f7a3-47bc-bdb3-aabc8483d1b4.png)
@@ -32,6 +33,8 @@ Upon sucess you'll have a new file ready to open:
 `--sourceFile1` - The file we will add to.
 `--sourceFile2` - The file we will pull models from.
 `--outputFilename` - The file that will be created. Please be careful as this will overwrite any existing file.
+
+If you'd like to keep adding models to one file, make the `--sourceFile1` and `--outputFilename` the same name.
 
 ## Install
 Dotnet 6.0+ is required. This might work on a Mac, I have no idea.
