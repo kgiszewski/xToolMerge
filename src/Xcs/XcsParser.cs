@@ -4,12 +4,12 @@ namespace xToolMerge.Xcs;
 
 public interface IXcsParser
 {
-    Task LoadFileAsync(string filepath);
+    Task<XcsModel> LoadFileAsync(string filepath);
 }
 
 public class XcsParser : IXcsParser
 {
-    public async Task LoadFileAsync(string filepath)
+    public async Task<XcsModel> LoadFileAsync(string filepath)
     {
         var fileContents = await File.ReadAllTextAsync(filepath);
         var xcsModel = JsonSerializer.Deserialize<XcsModel>(fileContents);
@@ -77,5 +77,9 @@ public class XcsParser : IXcsParser
                 }
             }
         }
+        
+        xcsModel.Device.Data.Values.First().Displays.Values = dataTypeValueDisplaysValueModelList;
+
+        return xcsModel;
     }
 }
