@@ -36,6 +36,9 @@ Upon sucess you'll have a new file ready to open:
 ## Install
 Dotnet 6.0+ is required. This might work on a Mac, I have no idea.
 
-Simply download the ZIP in the release section and put it where you'd like.
+Simply download [the ZIP in the release section](https://github.com/kgiszewski/xToolMerge/releases) and put it where you'd like.
 
 Follow the usage section above.
+
+## License
+MIT License
