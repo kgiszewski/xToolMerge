@@ -43,5 +43,8 @@ Simply download [the ZIP in the release section](https://github.com/kgiszewski/x
 
 Follow the usage section above.
 
+## Known Issues
+If the `Process` button fails to work, go thru each layer and ensure the the material, power and speed are set on each imported layer.
+
 ## License
 MIT License
