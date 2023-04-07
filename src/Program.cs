@@ -16,11 +16,24 @@ public class Program
         
         Console.WriteLine(JsonSerializer.Serialize(context));
 
-        var parser = host.Services.GetRequiredService<IXcsParser>();
+        var parser = host.Services.GetRequiredService<IXcsReader>();
         var xcsFile1 = await parser.LoadFileAsync(context.SourceFilePath1);
-        var file1Elements = GetElementsFromFile(xcsFile1, context.SourceFilePath1);
+        
+        GetElementsFromFile(xcsFile1, context.SourceFilePath1);
+        
         var xcsFile2 = await parser.LoadFileAsync(context.SourceFilePath2);
-        var file2Elements = GetElementsFromFile(xcsFile2, context.SourceFilePath2);
+        var (file2Elements, file2DeviceElements) = GetElementsFromFile(xcsFile2, context.SourceFilePath2);
+        
+        //merge file2 to file 1 as a new file
+        var merger = host.Services.GetRequiredService<IXcsMergeService>();
+        
+        await merger.MergeAsync(xcsFile1, file2Elements, file2DeviceElements);
+
+        var writer = host.Services.GetRequiredService<IXcsWriter>();
+
+        await writer.WriteAsync(xcsFile1, context.OutputFilename);
+
+        Console.WriteLine(xcsFile1.Canvas.First().Displays.Count());
         
         Console.ReadKey();
     }
@@ -35,8 +48,8 @@ public class Program
         {
             Console.WriteLine($"{element.Id}");
         }
-
-        var deviceDataDisplays = model.Device.Data.Values.First().Displays.Values
+        
+        var deviceDataDisplays = model.Device.Data.Values.Select(z => z.Displays).SelectMany(t => t.Values)
             .Where(x => elementsToCopy.Select(y => y.Id).Contains(x.Id)).ToList();
 
         if (deviceDataDisplays.Count != elementsToCopy.Count)
@@ -52,7 +65,9 @@ public class Program
 
         .ConfigureServices((_, services) =>
             {
-                services.AddSingleton<IXcsParser, XcsParser>();
+                services.AddSingleton<IXcsReader, XcsReader>();
+                services.AddSingleton<IXcsWriter, XcsWriter>();
+                services.AddSingleton<IXcsMergeService, XcsMergeService>();
             });
     
     private static CommandContext ParseCommandLine(string[] args)
